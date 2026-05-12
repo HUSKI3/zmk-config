@@ -1,11 +1,17 @@
-&i2c0 {
+/ {
+    chosen {
+        zmk,underglow = &underglow;
+    };
+};
+
+&spi3 {
     status = "okay";
 
-    ssd1306: ssd1306@3c {
-        compatible = "solomon,ssd1306fb";
-        reg = <0x3c>;
-        label = "SSD1306";
-        width = <128>;
-        height = <32>;
+    underglow: ws2812@0 {
+        compatible = "worldsemi,ws2812-spi";
+
+        spi-max-frequency = <4000000>;
+        chain-length = <10>;
+        color-mapping = <1 0 2>;
     };
 };
